@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Xenon Orientation</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic" rel="stylesheet" />
+    <style>
+        body {
+            font-family: "Josefin Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            background-color: #030513;
+            margin: 0;
+        }
+
+        .main-header {
+            background-image: url('assets/banner.gif');
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 10rem;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 95dvw;
+            height: auto;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            color: cyan;
+        }
+
+        .main-name {
+            background-color: #030513;
+            margin: 0;
+            color: cyan;
+            font-size: 75px;
+            text-align: center;
+        }
+
+        .license-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: auto;
+            padding: 2rem;
+            box-sizing: border-box;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+        .license-title {
+            opacity: 0;
+            transform: translateY(20px);
+            color: red;
+            font-size: 50px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .license-text {
+            opacity: 0;
+            transform: translateY(20px);
+            color: white;
+            font-size: 20px;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .license-text img {
+            max-width: 50px;
+            max-height: 50px;
+            margin-right: 10px;
+        }
+
+        .license-note {
+            opacity: 0;
+            transform: translateY(20px);
+            color: gray;
+            font-size: 18px;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .license-title.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .license-text.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .license-note.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in{
+            animation: fadeIn 3s ease-out forwards;
+        }
+        .back-to-site-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #030513;
+            color: cyan;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .back-to-site-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.7;
+        }
+
+        body:not(.show-btn) .back-to-site-btn,
+        body.show-btn-animating .back-to-site-btn {
+            opacity: 0;
+            transition: none;
+        }
+
+        body.show-btn .back-to-site-btn {
+            opacity: 1;
+            transition: opacity 0.5s ease 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+    </style>
+</head>
+<body>
+    <div class="main-header">
+        <img src="assets/logo.png" alt="logo" style="max-width: 50%; max-height: 50%;">
+    </div>
+    <a class="back-to-site-btn" href="http://kalikxenon.ru">Вернуться на сайт</a>
+    <div class="main-container">
+        <div class="license-container">
+            <h1 class="license-title"> Вы можете свободно: </h1>
+            <p class="license-text"> Делиться (обмениваться) — копировать и распространять материал на любом носителе и в любом формате </p>
+            <p class="license-text"> Адаптировать (создавать производные материалы) — делать ремиксы, видоизменять, и создавать новое, опираясь на этот материал </p>
+            <p class="license-text"> Лицензиар не вправе отозвать эти разрешения, пока вы выполняете условия лицензии. </p>
+            <p class="license-note" style="color: red;font-size: 50px;"> При обязательном соблюдении следующих условий: </p>
+            <p class="license-text"> <img src="assets/rights/Cc-by_new.svg.png"> «Attribution» («Атрибуция») — Вы должны обеспечить соответствующее указание авторства , предоставить ссылку на лицензию, и обозначить изменения, если таковые были сделаны . Вы можете это делать любым разумным способом, но не таким, который подразумевал бы, что лицензиар одобряет вас или ваш способ использования произведения. </p>
+            <p class="license-text"> <img src="assets/rights/Cc-nc.svg.png"> «NonCommercial» («Некоммерчески») — Вы не вправе использовать этот материал в коммерческих целях . </p>
+            <p class="license-text"> <img src="assets/rights/Cc-sa.svg.png"> «ShareAlike» («СохранениеУсловий») — Если вы перерабатываете, преобразовываете материал или берёте его за основу для производного произведения, вы должны распространять переделанные вами части материала на условиях той же лицензии , в соответствии с которой распространяется оригинал. </p>
+            <p class="license-text"> Без дополнительных ограничений — Вы не вправе применять юридические ограничения или технологические меры , создающие другим юридические препятствия в выполнении чего-либо из того, что разрешено лицензией. </p>
+            <p class="license-note" style="color: red;font-size: 50px;"> Замечания: </p>
+            <p class="license-text"> Вы не обязаны действовать согласно условиям лицензии, если конкретная часть материала находится в общественном достоянии или если такое использование вами материала разрешено согласно применимому исключению или ограничению авторских прав . </p>
+            <p class="license-text"> Вам не даётся никаких гарантий. Лицензия может не включать все разрешения, необходимые вам для использования произведения (материала) по вашему замыслу. Например, иные права, такие как право на обнародование, неприкосновенность частной жизни или неимущественные права могут ограничить вашу возможность использовать данный материал. </p>
+        </div>
+    </div>
+    <footer style="
+    color: gray;
+    font-size: 15px;">
+        <a href="rights.html" target="_blank"><p>©KalIKSoft</a> 2020-2024 | All Rights Reserved</p></p>
+      </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const licenseTitles = document.querySelectorAll(".license-title");
+            const licenseTexts = document.querySelectorAll(".license-text");
+            const licenseNotes = document.querySelectorAll(".license-note");
+
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("fade-in");
+                    observer.unobserve(entry.target);
+                  }
+                });
+              },
+              {
+                threshold: 0.5,
+              }
+            );
+
+            licenseTitles.forEach((title) => {
+              observer.observe(title);
+            });
+
+            licenseTexts.forEach((text) => {
+              observer.observe(text);
+            });
+
+            licenseNotes.forEach((note) => {
+              observer.observe(note);
+            });
+        });
+        setTimeout(function() {
+            document.body.classList.add('show-btn-animating');
+            setTimeout(function() {
+                document.body.classList.add('show-btn');
+                document.body.classList.remove('show-btn-animating');
+            }, 500);
+        }, 2000);
+    </script>
+</body>
+</html>

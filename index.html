@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Xenon Orientation</title>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic" rel="stylesheet" />
-    <style>
-        body {
-            font-family: "Josefin Sans", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            background-color: #030513;
-            margin: 0;
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <meta charset="UTF-8" /> 
+    <title>Xenon Orientation</title> 
+    <link 
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic" rel="stylesheet"
+    rel="stylesheet"
+    /> 
+    
+    <style> 
+        body { 
+            font-family: "Josefin Sans", sans-serif; 
+            font-weight: 400; 
+            font-style: normal; 
+            background-color: #030513; 
+            margin: 0; 
         }
-
+        
+        
         .main-header {
             background-image: url('assets/banner.gif');
             display: flex;
@@ -26,7 +31,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 95dvw;
+            width: 95vw;
             height: auto;
             padding: 0 2rem;
             box-sizing: border-box;
@@ -48,7 +53,127 @@
             text-align: center;
         }
 
+        .product-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 2rem 0;
+            gap: 1rem;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: rgba(51, 51, 51, 0.8);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .product-image-slider {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .slider-image {
+            display: none;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .slider-image.active {
+            display: block;
+        }
+
+        .slider-button {
+            transition: transform 0.3s ease;
+            position: absolute;
+            top: 50%;
+            background-color: transparent;
+            border: none;
+            color: aqua;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .slider-button:hover {
+        transform: scale(1.3);
+        }
+
+        .slider-button:active {
+        transform: scale(1.5);
+        transition: transform 0.1s ease;
+        }
+
+
+        .slider-prev {
+        left: 0;
+        border-right: 1rem solid transparent;
+        }
+
+        .slider-next {
+        right: 0;
+        border-left: 1rem solid transparent;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: aqua;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: yellow;
+        }
+
+        .product-button {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: aqua;
+            color: #030513;
+            border-radius: 0.25rem;
+            text-decoration: none;
+        }
+        .product-button:hover {
+        transform: scale(1.1);
+        background-color: rgba(0, 255, 255, 0.8);
+        }
+
+        .product-link-button {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        color: aqua;
+        border: 1px solid aqua;
+        border-radius: 0.25rem;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        transition: background-color 0.3s ease;
+        }
+
+        .product-link-button:hover {
+        background-color: rgba(0, 255, 255, 0.1);
+        }
+
         .reviews-container {
+            opacity: 0;
+            transform: translateY(20px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -94,7 +219,7 @@
             color: #ccc;
         }
 
-        .rerview-rate {
+        .review-rate {
             font-size: 1rem;
             color: yellow;
         }
@@ -106,27 +231,109 @@
         }
 
         .video-container {
+            opacity: 0;
+            transform: translateY(20px);
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             padding: 2rem 0;
         }
-
+        
         .video-iframe {
             width: 80%;
             max-width: 1200px;
             aspect-ratio: 16 / 9;
         }
-    </style>
-</head>
-<body>
-    <div class="main-header">
-        <img src="assets/logo.png" alt="logo" style="max-width: 50%; max-height: 50%;">
-    </div>
-    <div class="main-container">
-        <h1 class="main-name">Xenon Orientation</h1>
-        <p class="main-description">Лучший магазин телескопов на земле!</p>
+
+        .reviews-container.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        }
+
+        .video-container.fade-in {       
+        opacity: 1; 
+        transform: translateY(0);
+        }
+        .fade-in{
+            animation: fadeIn 3s ease-out forwards;
+        }
+        @keyframes button-animation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }    
+</style>
+</head> 
+<body> 
+    <div class="main-header"> 
+        <img src="assets/logo.png" alt="logo" style="max-width: 50%; max-height: 50%;"> 
+    </div> 
+    <div class="main-container"> <h1 class="main-name">Xenon Orientation</h1> 
+        <p class="main-description">Лучший магазин телескопов на земле!</p> 
+        <div class="product-container"> 
+            <div class="product-card"> 
+                <div class="product-image-slider"> 
+                    <img src="assets/viewer/1.jpg" class="product-image slider-image"> 
+                    <img src="assets/viewer/2.jpg" class="product-image slider-image"> 
+                    <img src="assets/viewer/3.jpg" class="product-image slider-image">
+                    <img src="assets/viewer/4.jpg" class="product-image slider-image">
+                    <img src="assets/viewer/5.jpg" class="product-image slider-image">
+                    <button class="slider-button slider-prev">&#10094;</button>
+                    <button class="slider-button slider-next">&#10095;</button>
+                </div>
+                <h2 class="product-name"style="text-align:center">Телескоп Sky-Watcher <p>Xenon Orientation</p></h2>
+                <p class="product-description"style="text-align:center">Подойдет для изучения дальнего космоса. Монтировка Добсона ставится за землю, обеспечивая хорошее положение оптической трубы. Зеркальный телескоп дает качественную картинку без хроматических аберраций. Телескоп комплектуется тремя окулярами и 3-кратной линзой Барлоу. Диапазон увеличений в базовой комплектации составляет 35-525 крат.</p>
+                <p class="product-price">142 490 р.</p>
+                <a href="productdelivery1.html" class="product-button">Оформить доставку сейчас</a>
+            </div>
+            <div class="product-card"> 
+                <div class="product-image-slider"> 
+                    <img src="assets/viewer/6.jpg" class="product-image slider-image"> 
+                    <img src="assets/viewer/7.jpg" class="product-image slider-image"> 
+                    <img src="assets/viewer/8.jpg" class="product-image slider-image">
+                    <img src="assets/viewer/9.jpg" class="product-image slider-image">
+                    <img src="assets/viewer/10.jpg" class="product-image slider-image">
+                    <button class="slider-button slider-prev">&#10094;</button>
+                    <button class="slider-button slider-next">&#10095;</button>
+                </div>
+                <h2 class="product-name"style="text-align:center">Телескоп Levenhuk Skyline PRO <p>Xenon Orientation</p></h2>
+                <p class="product-description"style="text-align:center">Подходит проведения для визуальных и фотографических наблюдений опытным пользователям. Совместим с фотокамерой для фиксации полученных изображений, возможна установка на фотоштатив. Позволяет детально с 150-кратным увеличением рассмотреть даже тусклые объекты. Трансформируется в подзорную трубу для изучения наземных предметов. Для максимально быстрого наведения установлен искатель с красной точкой.</p>
+                <p class="product-price">145 990 р.</p>
+                <a href="productdelivery2.html" class="product-button">Оформить доставку сейчас</a>
+            </div>
+            <div class="product-card"> 
+                <div class="product-image-slider"> 
+                    <img src="assets/viewer/11.jpg" class="product-image slider-image"> 
+                    <img src="assets/viewer/12.jpg" class="product-image slider-image"> 
+                    <img src="assets/viewer/13.jpg" class="product-image slider-image">
+                    <img src="assets/viewer/14.jpg" class="product-image slider-image">
+                    <img src="assets/viewer/15.jpg" class="product-image slider-image">
+                    <button class="slider-button slider-prev">&#10094;</button>
+                    <button class="slider-button slider-next">&#10095;</button>
+                </div>
+                <h2 class="product-name"style="text-align:center">Телескоп Levenhuk Blitz 203 PLUS <p>Xenon Orientation</p></h2>
+                <p class="product-description"style="text-align:center">позволяет не только изучать космос, но и заниматься астрофотографией. Светосильная и мощная оптика прекрасно подходит для множества астрономических исследований, а расширенная комплектация позволяет сразу же приступить к наблюдениям. В телескоп можно наблюдать многие, в том числе и тусклые объекты дальнего космоса, планеты Солнечной системы и их спутники, Луну. В комплекте есть лунный светофильтр.</p>
+                <p class="product-price">61 990 р.</p>
+                <a href="productdelivery3.html" class="product-button">Оформить доставку сейчас</a>
+            </div>
+        </div>
         <div class="reviews-container">
             <div class="review">
                 <img src="assets/1.jpg" alt="Review 1" class="review-image">
@@ -134,9 +341,10 @@
                     <span class="review-date">22.05.2024</span>
                     <p class="review-author">
                         <span class="review-author-name">Андрей Т.</span>
-                        <span class="rerview-rate">★★★★★</span>
+                        <span class="review-rate">★★★★★</span>
                     </p>
                     <p class="review-text">Мне понравилось что вcе детали в кейсе, специально такой вариант выбрал чтобы брать в поездки и походы. в кецсе все детали хорошо лежат и застегиваются ремешками. прочный штатив. кажлая деталь упакована в мешочек.</p>
+                    <span style="font-size: 15; color: gray;">Телескоп Sky-Watcher</span>
                 </div>
             </div>
             <div class="review">
@@ -145,9 +353,10 @@
                     <span class="review-date">12.03.2024</span>
                     <p class="review-author">
                         <span class="review-author-name">Дмитрий Ф.</span>
-                        <span class="rerview-rate">★★★★★</span>
+                        <span class="review-rate">★★★★★</span>
                     </p>
                     <p class="review-text">1. Небольшая цена. 2. Нет хроматизма. 3. Подходит для наблюдений наземных объектов, Луны, планет Солнечной системы, звёзд, звёздных скоплений, ярких туманностей и нескольких галактик. 4. Быстрая термостабилизация.</p>
+                    <span style="font-size: 15; color: gray;">Телескоп Levenhuk Skyline PRO</span>
                 </div>
             </div>
             <div class="review">
@@ -156,15 +365,72 @@
                     <span class="review-date">17.03.2024</span>
                     <p class="review-author">
                         <span class="review-author-name">Евгений П.</span>
-                        <span class="rerview-rate">★★★★★</span>
+                        <span class="review-rate">★★★★★</span>
                     </p>
                     <p class="review-text">Достоинства: Большая аппертура за вменяемые деньги. Отличный телескоп для наблюдения как планет, так и объектов глубоко космоса. Минусов нет!</p>
+                    <span style="font-size: 15; color: gray;">Телескоп Levenhuk Blitz 203 PLUS</span>
                 </div>
             </div>
         </div>
         <div class="video-container">
-            <iframe class="video-iframe" src="https://www.youtube.com/embed/sFSrYK5BImY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="video-iframe" src="https://www.youtube.com/embed/03UaHuz9EOE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
-</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var sliders = document.querySelectorAll(".product-image-slider");
+
+        sliders.forEach(function (slider) {
+          var images = slider.querySelectorAll(".slider-image");
+          var prevButton = slider.querySelector(".slider-prev");
+          var nextButton = slider.querySelector(".slider-next");
+          var currentIndex = 0;
+
+          images[currentIndex].classList.add("active");
+
+          prevButton.addEventListener("click", function () {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].classList.add("active");
+          });
+
+          nextButton.addEventListener("click", function () {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add("active");
+          });
+        });
+
+        const videoContainer = document.querySelector(".video-container");
+        const reviewsContainer = document.querySelector(".reviews-container");
+        
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("fade-in");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+          }
+        );
+        observer.observe(reviewsContainer);
+        observer.observe(videoContainer);
+        if (event.ctrlKey && event.keyCode === 83) {
+        event.preventDefault();
+        alert('Сохранение страницы запрещено!');
+        }
+      });
+    </script>
+    <footer style="
+    color: gray;
+    font-size: 10px;">
+        <a href="rights.html" target="_blank"><p>©KalIKSoft</a> 2020-2024 | All Rights Reserved</p></p>
+      </footer>
+      
+    </body>
 </html>
+    
